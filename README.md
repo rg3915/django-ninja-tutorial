@@ -4,6 +4,8 @@ Este é um tutorial do [Django Ninja](https://django-ninja.rest-framework.com/) 
 
 Frontend com VueJS: https://github.com/rg3915/regisdopython-vue
 
+![vuejs_django_ninja.png](img/vuejs_django_ninja.png)
+
 
 ## Construindo uma API com Django Ninja
 
@@ -14,7 +16,7 @@ https://django-ninja.rest-framework.com/tutorial/
 pip install django-ninja
 ```
 
-```
+```python
 # api.py
 from ninja import NinjaAPI
 
@@ -26,7 +28,7 @@ def hello(request):
     return "Hello world"
 ```
 
-```
+```python
 # urls.py
 from django.contrib import admin
 from django.urls import path
