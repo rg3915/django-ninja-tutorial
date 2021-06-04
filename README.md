@@ -67,3 +67,7 @@ python manage.py migrate
 python manage.py createsuperuser --username="admin" --email=""
 ```
 
+## Swagger
+
+http://localhost:8000/api/v1/docs
+
