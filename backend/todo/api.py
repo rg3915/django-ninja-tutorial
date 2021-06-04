@@ -8,7 +8,8 @@ from .models import Todo
 
 router = Router()
 
-TodoSchema = create_schema(Todo, depth=1)
+# TodoSchema = create_schema(Todo, depth=1)
+TodoSchema = create_schema(Todo)
 
 
 @router.get("/todos", response=List[TodoSchema])
