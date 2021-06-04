@@ -97,18 +97,25 @@ Editar `core/api.py`
 # core/api.py
 from typing import List
 
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
-from ninja import Router
-from ninja.orm import create_schema
+from ninja import Router, Schema
+
+from backend.todo.api import TodoSchema
 
 router = Router()
 
-GroupSchema = create_schema(Group, fields=['id', 'name'])
 
-UserSchema = create_schema(User, custom_fields=[
-    ('groups', List[GroupSchema], None),
-])
+class UserSchema(Schema):
+    id: int
+    first_name: str
+    last_name: str
+    email: str
+    todos: List[TodoSchema]
+
+    class Meta:
+        model = User
+        fields = '__all__'
 
 
 @router.get("/users", response=List[UserSchema])
@@ -137,7 +144,8 @@ from .models import Todo
 
 router = Router()
 
-TodoSchema = create_schema(Todo, depth=1)
+# TodoSchema = create_schema(Todo, depth=1)
+TodoSchema = create_schema(Todo)
 
 
 @router.get("/todos", response=List[TodoSchema])
