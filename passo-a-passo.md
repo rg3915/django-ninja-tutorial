@@ -21,6 +21,15 @@ python ../manage.py startapp core
 python ../manage.py startapp todo
 ```
 
+Deletar alguns arquivos
+
+```
+rm -f backend/core/admin.py
+rm -f backend/core/models.py
+rm -f backend/core/views.py
+rm -f backend/todo/views.py
+```
+
 Copiar o [settings_example.py]() e editar o `settings.py`.
 
 ```
