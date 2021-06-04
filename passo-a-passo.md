@@ -229,7 +229,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 Frontend
 
-```
+```js
 # Home.vue
 
 ...
@@ -247,7 +247,7 @@ Frontend
     }
 ```
 
-```
+```js
 # UserTodo.vue
 
 ...
@@ -261,7 +261,7 @@ Frontend
 
 ## Concluir a tarefa
 
-```
+```python
 # todo/api.py
 from ninja import Router, Schema
 
@@ -280,7 +280,7 @@ def is_done(request, id: int, payload: DoneSchemaIn):
 
 ## Frontend
 
-```
+```js
 # UserTodo.vue
 <template>
     <div class="about">
