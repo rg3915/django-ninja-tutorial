@@ -23,9 +23,9 @@ from ninja import NinjaAPI
 api = NinjaAPI()
 
 
-@api.get("/hello")
-def hello(request):
-    return "Hello world"
+@api.get("/ping")
+def ping(request):
+    return "pong"
 ```
 
 ```python
