@@ -209,7 +209,7 @@ pip freeze | grep django-cors-headers >> requirements.txt
 
 Editar `settings.py`
 
-```
+```python
 INSTALLED_APPS = [
     ...
     'corsheaders',

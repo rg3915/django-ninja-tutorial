@@ -6,6 +6,8 @@ Frontend com VueJS: https://github.com/rg3915/regisdopython-vue
 
 ![vuejs_django_ninja.png](img/vuejs_django_ninja.png)
 
+![fullstack-diagrama-frontend-backend-final2.png](img/fullstack-diagrama-frontend-backend-final2.png)
+
 
 ## Construindo uma API com Django Ninja
 
