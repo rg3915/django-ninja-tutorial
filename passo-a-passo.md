@@ -191,3 +191,62 @@ urlpatterns = [
 
 Entrar em http://localhost:8000/api/v1/docs
 
+Resolvendo o problema de CORS-HEADERS
+
+```
+pip install django-cors-headers
+pip freeze | grep django-cors-headers >> requirements.txt
+```
+
+Editar `settings.py`
+
+```
+INSTALLED_APPS = [
+    ...
+    'corsheaders',
+    ...
+]
+
+MIDDLEWARE = [
+    ...
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # <---
+    'django.middleware.common.CommonMiddleware',
+    ...
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+```
+
+Frontend
+
+```
+# Home.vue
+
+...
+    mounted() {
+        fetch('http://localhost:8000/api/v1/core/users')
+            .then(response => response.json())
+            .then((res) => {
+                this.users = res;
+            });
+    },
+    filters: {
+        fullName(user) {
+            return user.first_name + ' ' + user.last_name
+        }
+    }
+```
+
+```
+# UserTodo.vue
+
+...
+    mounted() {
+        const userId = this.$route.params.id;
+        fetch(`http://localhost:8000/api/v1/core/users/${userId}`)
+            .then(response => response.json())
+            .then(res => this.user = res);
+    },
+```
+

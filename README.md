@@ -72,3 +72,14 @@ python manage.py createsuperuser --username="admin" --email=""
 
 http://localhost:8000/api/v1/docs
 
+
+
+## Frontend
+
+Editar rota
+
+```
+fetch('http://127.0.0.1:8000/api/v1/core/users')
+```
+
+
