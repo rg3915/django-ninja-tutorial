@@ -1,26 +1,19 @@
 from typing import List
 
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
-from ninja import ModelSchema, Router
+from ninja import Router, Schema
 
 from backend.todo.api import TodoSchema
 
-# from ninja.orm import create_schema
-
-
-
 router = Router()
 
-# GroupSchema = create_schema(Group, fields=['id', 'name'])
 
-# UserSchema = create_schema(User, custom_fields=[
-#     ('groups', List[GroupSchema], None),
-# ])
-
-
-class UserSchema(ModelSchema):
-    full_name: str
+class UserSchema(Schema):
+    id: int
+    first_name: str
+    last_name: str
+    email: str
     todos: List[TodoSchema]
 
     class Meta:
