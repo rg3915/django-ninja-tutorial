@@ -1,5 +1,3 @@
-from typing import List
-
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from ninja import Router, Schema
@@ -15,14 +13,14 @@ class UserSchema(Schema):
     first_name: str
     last_name: str
     email: str
-    todos: List[TodoSchema]
+    todos: list[TodoSchema]
 
     class Meta:
         model = User
         fields = '__all__'
 
 
-@router.get("/users", response=List[UserSchema])
+@router.get("/users", response=list[UserSchema])
 def list_users(request):
     qs = User.objects.exclude(username='admin')
     return qs

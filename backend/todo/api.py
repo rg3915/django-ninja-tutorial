@@ -1,5 +1,3 @@
-from typing import List
-
 from django.shortcuts import get_object_or_404
 from ninja import Router, Schema
 from ninja.orm import create_schema
@@ -18,7 +16,7 @@ class DoneSchemaIn(Schema):
     is_done: bool
 
 
-@router.get("/todos", response=List[TodoSchema])
+@router.get("/todos", response=list[TodoSchema])
 def list_todos(request):
     qs = Todo.objects.all()
     return qs
