@@ -7,7 +7,9 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=100, null=True, blank=True)
     created_by = models.ForeignKey(
         User,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
     )
 
     class Meta:
