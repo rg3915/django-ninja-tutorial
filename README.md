@@ -70,6 +70,9 @@ python manage.py migrate
 python manage.py createsuperuser --username="admin" --email=""
 ```
 
+Define `api = NinjaAPI(csrf=True)` em `backend/api.py`.
+
+
 ## Swagger
 
 http://localhost:8000/api/v1/docs
