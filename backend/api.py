@@ -5,8 +5,7 @@ from backend.crm.api import router as customer_router
 from backend.todo.api import router as todo_router
 
 
-# api = NinjaAPI(csrf=False)
-api = NinjaAPI()
+api = NinjaAPI(csrf=True)
 
 
 api.add_router("/core/", core_router)
