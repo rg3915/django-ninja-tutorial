@@ -6,7 +6,8 @@ from ninja import Router, Schema
 
 from backend.todo.api import TodoSchema
 
-router = Router()
+
+router = Router(tags=['Users'])
 
 
 class UserSchema(Schema):

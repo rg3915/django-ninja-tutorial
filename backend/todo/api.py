@@ -6,7 +6,9 @@ from ninja.orm import create_schema
 
 from .models import Todo
 
-router = Router()
+
+router = Router(tags=['Todo'])
+
 
 # TodoSchema = create_schema(Todo, depth=1)
 TodoSchema = create_schema(Todo)
