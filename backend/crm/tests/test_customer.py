@@ -19,7 +19,7 @@ def test_password():
 
 
 @pytest.fixture
-def create_user(db, django_user_model, test_password):
+def create_user(django_user_model, test_password):
     def make_user(**kwargs):
         kwargs["password"] = test_password
         if "username" not in kwargs:
@@ -30,7 +30,7 @@ def create_user(db, django_user_model, test_password):
 
 
 @pytest.fixture
-def auto_login_user(db, client, create_user, test_password):
+def auto_login_user(client, create_user, test_password):
     def make_auto_login(user=None):
         if user is None:
             user = create_user()
@@ -42,7 +42,7 @@ def auto_login_user(db, client, create_user, test_password):
 
 @pytest.mark.django_db
 def test_list_customer(client):
-    response = client.get("/api/v1/crm/customers/")
+    response = client.get("/api/v1/crm/customers")
     assert response.status_code == HTTPStatus.OK
 
 
@@ -50,7 +50,7 @@ def test_list_customer(client):
 def test_create_customer(auto_login_user, customer_data):
     client = auto_login_user()
     response = client.post(
-        "/api/v1/crm/customers/", customer_data, content_type="application/json"
+        "/api/v1/crm/customers", customer_data, content_type="application/json"
     )
 
     expected = {
@@ -70,7 +70,7 @@ def test_create_customer_created_by_id_3(auto_login_user, customer_data):
     _ = auto_login_user()
     client = auto_login_user()
     response = client.post(
-        "/api/v1/crm/customers/", customer_data, content_type="application/json"
+        "/api/v1/crm/customers", customer_data, content_type="application/json"
     )
 
     expected = {
