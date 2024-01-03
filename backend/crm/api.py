@@ -2,6 +2,7 @@ from http import HTTPStatus
 from django.shortcuts import get_object_or_404
 from ninja import Router, ModelSchema
 from ninja.orm import create_schema
+from ninja_jwt.authentication import JWTAuth
 
 from .models import Customer
 
@@ -23,7 +24,7 @@ class CustomerSchemaIn(ModelSchema):
         )
 
 
-@router.get('/customers', response=list[CustomerSchema])
+@router.get('/customers', response=list[CustomerSchema], auth=JWTAuth())
 def list_customers(request):
     return Customer.objects.all()
 

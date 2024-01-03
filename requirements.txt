@@ -4,3 +4,4 @@ django-ninja==1.0.1
 pytest-django==4.7.0
 python-decouple==3.8
 django-cors-headers==4.3.1
+django-ninja-jwt==5.2.10

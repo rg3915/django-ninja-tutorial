@@ -1,13 +1,10 @@
-from ninja import NinjaAPI
-
-from backend.core.api import router as core_router
-from backend.crm.api import router as customer_router
-from backend.todo.api import router as todo_router
+from ninja_jwt.controller import NinjaJWTDefaultController
+from ninja_extra import NinjaExtraAPI
 
 
-api = NinjaAPI(csrf=True)
+api = NinjaExtraAPI()
+api.register_controllers(NinjaJWTDefaultController)
 
-
-api.add_router("/core/", core_router)
-api.add_router("/crm/", customer_router)
-api.add_router("/todo/", todo_router)
+api.add_router('/core/', 'backend.core.api.router')
+api.add_router('/crm/', 'backend.crm.api.router')
+api.add_router('/todo/', 'backend.todo.api.router')
