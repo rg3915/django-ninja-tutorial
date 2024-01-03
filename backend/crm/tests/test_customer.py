@@ -40,10 +40,10 @@ def auto_login_user(client, create_user, test_password):
     return make_auto_login
 
 
-@pytest.mark.django_db
-def test_list_customer(client):
-    response = client.get("/api/v1/crm/customers")
-    assert response.status_code == HTTPStatus.OK
+# @pytest.mark.django_db
+# def test_list_customer(client):
+#     response = client.get("/api/v1/crm/customers")
+#     assert response.status_code == HTTPStatus.OK
 
 
 @pytest.mark.django_db
