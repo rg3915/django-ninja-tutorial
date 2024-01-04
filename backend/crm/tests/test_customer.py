@@ -40,17 +40,18 @@ def auto_login_user(client, create_user, test_password):
     return make_auto_login
 
 
-# @pytest.mark.django_db
-# def test_list_customer(client):
-#     response = client.get("/api/v1/crm/customers")
-#     assert response.status_code == HTTPStatus.OK
+@pytest.mark.django_db
+def test_list_customer(client, auto_login_user):
+    client = auto_login_user()
+    response = client.get("/api/v1/crm/customer")
+    assert response.status_code == HTTPStatus.OK
 
 
 @pytest.mark.django_db
 def test_create_customer(auto_login_user, customer_data):
     client = auto_login_user()
     response = client.post(
-        "/api/v1/crm/customers", customer_data, content_type="application/json"
+        "/api/v1/crm/customer", customer_data, content_type="application/json"
     )
 
     expected = {
@@ -70,7 +71,7 @@ def test_create_customer_created_by_id_3(auto_login_user, customer_data):
     _ = auto_login_user()
     client = auto_login_user()
     response = client.post(
-        "/api/v1/crm/customers", customer_data, content_type="application/json"
+        "/api/v1/crm/customer", customer_data, content_type="application/json"
     )
 
     expected = {

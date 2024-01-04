@@ -6,6 +6,14 @@ import pytest
 
 
 @pytest.fixture
+def customer_data():
+    return {
+        "first_name": "Regis",
+        "last_name": "Santos",
+    }
+
+
+@pytest.fixture
 def test_password():
     return 'strong-test-pass'
 
@@ -63,6 +71,36 @@ def test_list_customers_with_token(auto_login_return_user):
 
     headers = {'Authorization': f'Bearer {token["access"]}'}
 
-    response = client.get('/api/v1/crm/customers', headers=headers)
+    response = client.get('/api/v1/crm/customers/jwt', headers=headers)
 
     assert response.status_code == HTTPStatus.OK
+
+
+@pytest.mark.django_db
+def test_create_customer(auto_login_return_user, customer_data):
+    client, user = auto_login_return_user()
+
+    test_password = 'strong-test-pass'
+
+    client.login(username=user.username, password=test_password)
+
+    token = get_token(client, user)
+
+    headers = {'Authorization': f'Bearer {token["access"]}'}
+
+    response = client.post(
+        "/api/v1/crm/customers/jwt",
+        customer_data,
+        content_type="application/json",
+        headers=headers
+    )
+
+    expected = {
+        "id": 1,
+        "first_name": "Regis",
+        "last_name": "Santos",
+        "created_by": 1,
+    }
+
+    assert response.status_code == HTTPStatus.CREATED
+    assert expected == json.loads(response.content)
